@@ -10,6 +10,7 @@ export default function Index() {
   const [guestName, setGuestName] = useState('');
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [foodPreferences, setFoodPreferences] = useState<string[]>([]);
+  const [allergyText, setAllergyText] = useState('');
   const [drinkPreferences, setDrinkPreferences] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
 
@@ -23,10 +24,9 @@ export default function Index() {
   ];
 
   const foodOptions = [
-    { id: 'meat', name: 'Мясные блюда', icon: 'Beef' },
-    { id: 'fish', name: 'Рыба и морепродукты', icon: 'Fish' },
-    { id: 'vegetarian', name: 'Вегетарианские блюда', icon: 'Salad' },
-    { id: 'desserts', name: 'Десерты', icon: 'Cake' },
+    { id: 'nomeat', name: 'Не ем мясо', icon: 'X' },
+    { id: 'nofish', name: 'Не ем рыбу', icon: 'X' },
+    { id: 'noseafood', name: 'Не ем морепродукты', icon: 'X' },
   ];
 
   const drinkOptions = [
@@ -57,9 +57,9 @@ export default function Index() {
         <div className="text-center mb-16 animate-fade-in">
           <div className="mb-8 flex justify-center">
             <img 
-              src="https://cdn.poehali.dev/projects/82e4f76c-86d4-48eb-9a38-1aeeb351c066/files/58cd6b45-33cf-4431-875b-40c6a739fe9d.jpg" 
-              alt="Цветочная композиция" 
-              className="w-48 h-48 object-contain animate-float"
+              src="https://cdn.poehali.dev/files/pTV-Ny2I8orahYd1LjEDbzcIUoQAuar6OQl43DE4cOMrHv9v015kQtsySws_x1T9R2MdUjdQf8FMReCYmOsbgAym.jpg" 
+              alt="Полина, Виктор и их котик" 
+              className="w-64 h-64 object-cover rounded-full border-4 border-primary/20 shadow-xl animate-float"
             />
           </div>
           <h1 className="text-6xl md:text-7xl font-cormorant font-semibold text-primary mb-4">
@@ -131,7 +131,7 @@ export default function Index() {
                 Предпочтения в еде
               </h2>
               <p className="text-muted-foreground mb-6">
-                Отметьте блюда, которые вы предпочитаете:
+                Отметьте ограничения, если они есть:
               </p>
               <div className="space-y-4">
                 {foodOptions.map((food) => (
@@ -151,6 +151,16 @@ export default function Index() {
                     </Label>
                   </div>
                 ))}
+                <div className="mt-6">
+                  <Label htmlFor="allergy" className="text-lg mb-2 block">Если у вас есть аллергия, укажите на что:</Label>
+                  <Input
+                    id="allergy"
+                    value={allergyText}
+                    onChange={(e) => setAllergyText(e.target.value)}
+                    placeholder="Например: орехи, лактоза, глютен..."
+                    className="text-lg"
+                  />
+                </div>
               </div>
             </Card>
 
