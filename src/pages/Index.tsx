@@ -8,7 +8,6 @@ import Icon from '@/components/ui/icon';
 
 export default function Index() {
   const [guestName, setGuestName] = useState('');
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [foodPreferences, setFoodPreferences] = useState<string[]>([]);
   const [allergyText, setAllergyText] = useState('');
   const [drinkPreferences, setDrinkPreferences] = useState<string[]>([]);
@@ -108,28 +107,23 @@ export default function Index() {
             <Card className="p-8 shadow-lg border-2 border-primary/10 animate-fade-in">
               <h2 className="text-3xl font-cormorant font-semibold text-primary mb-6 flex items-center gap-3">
                 <Icon name="Palette" size={28} />
-                Цветовая гамма праздника
+                Дресс-код
               </h2>
               <p className="text-muted-foreground mb-6">
-                Это официальная цветовая гамма нашей свадьбы. Выберите цвета, которые вам больше всего нравятся:
+                Это цвета нарядов, в которых мы вас будем ждать на нашей свадьбе:
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {colorOptions.map((color) => (
-                  <button
+                  <div
                     key={color.id}
-                    onClick={() => toggleSelection(color.id, selectedColors, setSelectedColors)}
-                    className={`p-4 rounded-xl border-2 transition-all hover:scale-105 ${
-                      selectedColors.includes(color.id)
-                        ? 'border-primary shadow-lg'
-                        : 'border-border hover:border-primary/50'
-                    }`}
+                    className="p-4 rounded-xl border-2 border-border"
                   >
                     <div
                       className="w-full h-20 rounded-lg mb-3"
                       style={{ backgroundColor: color.color }}
                     />
                     <p className="text-sm font-medium text-center">{color.name}</p>
-                  </button>
+                  </div>
                 ))}
               </div>
             </Card>
