@@ -14,11 +14,12 @@ export default function Index() {
   const [submitted, setSubmitted] = useState(false);
 
   const colorOptions = [
-    { id: 'pink', name: 'Нежно-розовый', color: '#FFDEE2' },
-    { id: 'lavender', name: 'Лавандовый', color: '#E5DEFF' },
-    { id: 'peach', name: 'Персиковый', color: '#FEF7CD' },
-    { id: 'mint', name: 'Мятный', color: '#F2FCE2' },
-    { id: 'cream', name: 'Кремовый', color: '#FDE1D3' },
+    { id: 'olive', name: 'Оливковый', color: '#4d5c22' },
+    { id: 'sage', name: 'Шалфей', color: '#a6b15f' },
+    { id: 'beige', name: 'Бежевый', color: '#8d7a54' },
+    { id: 'silver', name: 'Серебристый', color: '#bebdc2' },
+    { id: 'ivory', name: 'Слоновая кость', color: '#f0f0ef' },
+    { id: 'black', name: 'Строгий черный', color: '#000000' },
   ];
 
   const foodOptions = [
@@ -31,7 +32,9 @@ export default function Index() {
   const drinkOptions = [
     { id: 'wine', name: 'Вино', icon: 'Wine' },
     { id: 'champagne', name: 'Шампанское', icon: 'Sparkles' },
-    { id: 'cocktails', name: 'Коктейли', icon: 'GlassWater' },
+    { id: 'cognac', name: 'Коньяк', icon: 'GlassWater' },
+    { id: 'vodka', name: 'Водка', icon: 'GlassWater' },
+    { id: 'whisky', name: 'Виски', icon: 'GlassWater' },
     { id: 'nonalcoholic', name: 'Безалкогольные напитки', icon: 'Coffee' },
   ];
 
@@ -99,7 +102,7 @@ export default function Index() {
                 Цветовая гамма праздника
               </h2>
               <p className="text-muted-foreground mb-6">
-                Помогите нам создать идеальную атмосферу! Выберите цвета, которые вам нравятся:
+                Это официальная цветовая гамма нашей свадьбы. Выберите цвета, которые вам больше всего нравятся:
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {colorOptions.map((color) => (
