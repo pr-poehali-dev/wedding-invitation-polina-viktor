@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "Save guest data",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "guestName": "Иван Иванов",
+        "foodPreferences": ["nomeat"],
+        "allergyText": "орехи",
+        "drinkPreferences": ["wine", "champagne"]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get all guests",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}

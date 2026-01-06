@@ -45,8 +45,29 @@ export default function Index() {
     }
   };
 
-  const handleSubmit = () => {
-    setSubmitted(true);
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/e4343a47-9082-4c5a-8a34-3e246177ac60', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          guestName,
+          foodPreferences,
+          allergyText,
+          drinkPreferences,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error('Failed to save guest data');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
