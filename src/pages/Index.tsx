@@ -65,20 +65,29 @@ export default function Index() {
           <h1 className="text-6xl md:text-7xl font-cormorant font-semibold text-primary mb-4">
             Полина & Виктор
           </h1>
-          <div className="flex items-center justify-center gap-4 text-lg text-muted-foreground mb-6">
+          <div className="flex flex-col items-center justify-center gap-3 text-lg text-muted-foreground mb-6">
             <div className="flex items-center gap-2">
               <Icon name="Calendar" size={20} />
               <span>18 июля 2026</span>
             </div>
-            <span className="text-2xl">•</span>
             <div className="flex items-center gap-2">
               <Icon name="MapPin" size={20} />
               <span>ул. Гагарина, 50, д. Брод</span>
             </div>
+            <div className="flex items-center gap-2 text-primary/80">
+              <Icon name="Clock" size={20} />
+              <span className="italic">Время мероприятия будет сообщено позже</span>
+            </div>
           </div>
-          <p className="text-xl text-foreground/80 font-light italic">
-            Приглашаем вас разделить с нами этот особенный день
-          </p>
+          <div className="max-w-2xl mx-auto space-y-4">
+            <p className="text-xl text-foreground/80 font-light italic">
+              Приглашаем вас разделить с нами этот особенный день
+            </p>
+            <p className="text-lg text-foreground/70 font-light leading-relaxed">
+              Мы мечтали об этом моменте, и теперь хотим, чтобы вы были рядом, когда наши сердца соединятся навсегда. 
+              Ваше присутствие сделает этот день по-настоящему незабываемым! 💕
+            </p>
+          </div>
         </div>
 
         {!submitted ? (
