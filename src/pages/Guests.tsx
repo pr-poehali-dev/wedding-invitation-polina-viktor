@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import * as XLSX from 'xlsx';
 
 interface Guest {
   id: number;
@@ -46,6 +48,36 @@ export default function Guests() {
     nonalcoholic: 'Безалкогольные напитки',
   };
 
+  const downloadExcel = () => {
+    const data = guests.map(guest => ({
+      'Имя гостя': guest.guestName,
+      'Ограничения в еде': guest.foodPreferences.map(f => foodLabels[f] || f).join(', ') || 'Нет',
+      'Аллергия': guest.allergyText || 'Нет',
+      'Напитки': guest.drinkPreferences.map(d => drinkLabels[d] || d).join(', ') || 'Не указаны',
+      'Дата ответа': new Date(guest.createdAt).toLocaleDateString('ru-RU', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Гости');
+    
+    ws['!cols'] = [
+      { wch: 20 },
+      { wch: 30 },
+      { wch: 20 },
+      { wch: 40 },
+      { wch: 25 }
+    ];
+    
+    XLSX.writeFile(wb, `Ответы_гостей_${new Date().toLocaleDateString('ru-RU')}.xlsx`);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-muted/50 flex items-center justify-center">
@@ -64,9 +96,15 @@ export default function Guests() {
           <h1 className="text-5xl md:text-6xl font-cormorant font-semibold text-primary mb-4">
             Ответы гостей
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground mb-6">
             Всего ответили: <span className="font-semibold text-primary">{guests.length}</span> {guests.length === 1 ? 'гость' : 'гостей'}
           </p>
+          {guests.length > 0 && (
+            <Button onClick={downloadExcel} size="lg" className="gap-2">
+              <Icon name="Download" size={20} />
+              Скачать Excel
+            </Button>
+          )}
         </div>
 
         {guests.length === 0 ? (
